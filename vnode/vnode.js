@@ -13,6 +13,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
     this.tagName = tagName;
     this.properties = properties || noProperties;
     this.children = children || noChildren;
+    // 重复元素的识别标志
     this.key = key != null ? String(key) : undefined;
     this.namespace = typeof namespace === 'string' ? namespace : null;
 

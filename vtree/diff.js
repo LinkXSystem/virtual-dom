@@ -226,7 +226,8 @@ function reorder(aChildren, bChildren) {
     var bChildIndex = keyIndex(bChildren);
     var bKeys = bChildIndex.keys;
     var bFree = bChildIndex.free;
-
+    // 为啥 free 和 children 节点不同，就返回了？？
+    // 非 List 循环的 Dom，其实根本不需要比较
     if (bFree.length === bChildren.length) {
         return {
             children: bChildren,
@@ -234,6 +235,7 @@ function reorder(aChildren, bChildren) {
         };
     }
 
+    // 是否为 Levenshtein Distance 需要等待判断
     // O(N) time, O(N) memory
     var aChildIndex = keyIndex(aChildren);
     var aKeys = aChildIndex.keys;
@@ -402,7 +404,7 @@ function keyIndex(children) {
 
     for (var i = 0; i < length; i++) {
         var child = children[i];
-
+        // key 为 0 时，取其为标识
         if (child.key) {
             keys[child.key] = i;
         } else {
